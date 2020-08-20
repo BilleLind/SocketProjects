@@ -1,4 +1,4 @@
-package sample;
+package laeneBeregner;
 
 public class Loan implements java.io.Serializable {
     private double interest;
