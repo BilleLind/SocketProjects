@@ -9,7 +9,7 @@ public class ClientBasic {
 
     public static void main(String[] args) {
         int port = 9900;
-        String host = "localhost";
+        String host = "192.168.43.251";
         DataInputStream in;
         DataOutputStream out;
         Socket socket;
