@@ -8,7 +8,7 @@ import java.net.Socket;
 public class ClientRasp {
 
     public static void main(String[] args) {
-        String host ="";
+        String host ="192.168.43.251";
         int port = 45050;
 
 
@@ -27,7 +27,7 @@ public class ClientRasp {
 
                 System.out.println("Message" + info);
 
-                Thread.sleep(3000);
+                Thread.sleep(30000);
             }
             outGoing.close();
             inComing.close();

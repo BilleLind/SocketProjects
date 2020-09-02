@@ -29,13 +29,13 @@ public class TicTacToeClient extends Application
     private char otherToken = ' ';
 
     // Create and initialize cells
-    private Cell[][] cell =  new Cell[3][3];
+    private  Cell[][] cell;
 
     // Create and initialize a title label
-    private Label lblTitle = new Label();
+    private  Label lblTitle;
 
     // Create and initialize a status label
-    private Label lblStatus = new Label();
+    private  Label lblStatus;
 
     // Indicate selected row and column by the current move
     private int rowSelected;
@@ -51,11 +51,11 @@ public class TicTacToeClient extends Application
     // Wait for the player to mark a cell
     private boolean waiting = true;
 
-    // Host name or ip
-    private String host = "localhost";
-
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
+        cell =  new Cell[3][3];
+        lblTitle = new Label();
+        lblStatus = new Label();
         // Pane to hold cell
         GridPane pane = new GridPane();
         for (int i = 0; i < 3; i++)
@@ -80,6 +80,8 @@ public class TicTacToeClient extends Application
     private void connectToServer() {
         try {
             // Create a socket to connect to the server
+            // Host name or ip
+            String host = "localhost";
             Socket socket = new Socket(host, 8000);
 
             // Create an input stream to receive data from the server
