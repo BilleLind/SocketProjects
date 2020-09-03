@@ -62,7 +62,7 @@ public class ServerJack extends Application implements  BlackJackConstants{
 
 
                     //launch a new thread for this session of two players
-                    new Thread(new HandleASession(player1, player2)).start();
+                    //new Thread(new HandleASession(player1, player2)).start();
                 }
             } catch (IOException e) {
                 e.printStackTrace();

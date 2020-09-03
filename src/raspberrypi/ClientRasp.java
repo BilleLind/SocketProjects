@@ -27,7 +27,7 @@ public class ClientRasp {
 
                 System.out.println("Message" + info);
 
-                Thread.sleep(30000);
+                Thread.sleep(10000);
             }
             outGoing.close();
             inComing.close();
