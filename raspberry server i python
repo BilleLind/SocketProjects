@@ -1,0 +1,43 @@
+import socket
+import adafruit_dht
+import board
+
+dhtDevice = adafruit_dht.DHT11(board.D17, use_pulseio=False)
+soc = socket.socket()
+host = ''
+port = 45050
+soc.bind((host, port))
+soc.listen(5)
+
+print('running')
+
+
+conn, addr = soc.accept()
+print('socket connect')
+while True:
+    print('Got connection from', addr)
+    length_of_message = int.from_bytes(conn.recv(2), byteorder='big')
+    msg = conn.recv(length_of_message).decode("UTF-8")
+    print(msg)
+    print(length_of_message)
+    
+    try:
+        temperature_c = dhtDevice.temperature
+        humidity = dhtDevice.humidity
+        info ="Temp: {:.1f} C    Humidity: {}% ".format(temperature_c, humidity)
+    except RuntimeError:
+        print('Failed')
+
+
+    if info is None:
+        info ='error'
+    else:
+        info ="Temp: {:.1f} C    Humidity: {}% ".format(temperature_c, humidity)
+
+    send ="send"
+    if send==msg:
+        message_to_send = info.encode("UTF-8")
+        conn.send(len(message_to_send).to_bytes(2,byteorder='big'))
+        conn.send(message_to_send)
+    else:
+        print("no message")
